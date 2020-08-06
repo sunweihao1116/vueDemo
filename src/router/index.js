@@ -11,23 +11,37 @@ const echarts = () => import(/* webpackChunkName: "Navigation" */ '@/pages/echar
 const elTree = () => import(/* webpackChunkName: "elTree" */ '@/pages/elTree');
 const tab = () => import(/* webpackChunkName: "elTree" */ '@/pages/tab');
 const scrollLeft = () => import(/* webpackChunkName: "elTree" */ '@/pages/scrollLeft');
-const upload = () => import(/* webpackChunkName: "elTree" */ '@/pages/facein-view');
 const listHover = () => import(/* webpackChunkName: "listHover" */ '@/pages/listHover');
 const vueDraggable = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/vueDraggable');
+const datePicker = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/datePicker');
+const overFlowX = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/overflow-x');
+const selectDom = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/selectDom');
+const Login = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/Login');
+const takePhoto = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/takePhoto');
+const faceinView = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/facein-view');
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
+      path: '/faceinView',
+      name: 'faceinView',
+      component: faceinView,
+    },
+    {
       path: '/list-hover',
       name: 'listHover',
       component: listHover,
     },
     {
-      path: '/upload',
-      name: '',
-      component: upload,
+      path: '/select',
+      name: 'selectDom',
+      component: selectDom,
+    },
+    {
+      path: '/overflow-x',
+      component: overFlowX,
     },
     {
       path: '/',
@@ -83,6 +97,21 @@ export default new Router({
       path: '/drag',
       name: 'vueDraggable',
       component: vueDraggable,
+    },
+    {
+      path: '/date-picker',
+      name: 'datePicker',
+      component: datePicker,
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login,
+    },
+    {
+      path: '/takePhoto',
+      name: 'takePhoto',
+      component: takePhoto,
     },
   ],
 });

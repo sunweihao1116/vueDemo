@@ -1,6 +1,14 @@
 <template>
   <div>
-    <vuedraggable class="warp" handle=".handle" v-model="list">
+    <!-- <vuedraggable class="warp" handle=".handle" v-model="list">
+      <transition-group>
+        <div class="item" v-for="item in list" :key="item">
+          {{item}}
+          <div class="handle">drag</div>
+        </div>
+      </transition-group>
+    </vuedraggable> -->
+    <vuedraggable class="warp" v-model="list" draggable=".item">
       <transition-group>
         <div class="item" v-for="item in list" :key="item">
           {{item}}
@@ -36,8 +44,16 @@ export default {
   overflow-y: auto;
   padding: 20px;
   height: 400px;
+ 
+  font-size: 20px;
+  span {
+    width: 100%;
+     display: flex;
+    flex-wrap: wrap;
+  }
   .item {
     text-align: center;
+    width: 120px;
     height: 70px;
     border: 1px solid #eee;
     border-radius: 10px;
@@ -46,13 +62,14 @@ export default {
   .item:not(:last-child) {
     margin-bottom: 10px;
   }
-  .handle {
-    width: 100px;
-    height: 30px;
-    background: #eee;
-    font-size: 20px;
-    position: absolute;
-    right: 0;
-  }
+  // .handle {
+  //   width: 80px;
+  //   height: 30px;
+  //   background: #eee;
+  //   font-size: 20px;
+  //   position: absolute;
+  //   right: 0;
+  //   bottom: 0;
+  // }
 }
 </style>

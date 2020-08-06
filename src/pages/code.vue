@@ -22,6 +22,8 @@
       </div>
       <mt-picker :slots="slots" @change="onValuesChange" :valueKey="'value'" ></mt-picker>
     </div>
+    <div @click="toLogin">toLogin</div>
+    <img hidden ref="imgFile" src="../assets/logo.png" alt="">
     <!-- <mt-datetime-picker
       ref="picker"
       type="date"
@@ -82,7 +84,22 @@ export default {
     mtDatetimePicker: DatetimePicker,
     mtPicker: Picker,
   },
+  mounted() {
+    const file = this.$refs.imgFile;
+    console.dir(this.dataURLtoFile(file.src, 'file'));
+  },
   methods: {
+    dataURLtoFile(dataurl, filename) {
+      const arr = dataurl.split(',');
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      let n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      while (n--) { // eslint-disable-line
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      return new File([u8arr], filename, { type: mime });
+    },
     onValuesChange(picker, values) {
       this.dateTime = values;
     },
@@ -102,6 +119,9 @@ export default {
       // } else {
       //   console.log('error')
       // }
+    },
+    toLogin() {
+      this.$router.replace({ path: 'Login', query: { url: this.$route.fullPath } });
     },
   },
 };

@@ -48,8 +48,11 @@ module.exports = {
       },
     ],
     // allow debugger during development
+    'no-console': 0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     'arrow-parens': 1,
+    'prefer-destructuring': 0,
+    'consistent-return': 0,
     // 'no-unused-vars': 1,
     'max-len': 0,
     'arrow-parens': 0,

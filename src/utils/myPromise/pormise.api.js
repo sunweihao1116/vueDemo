@@ -1,6 +1,12 @@
-// Promises/A+: https://promisesaplus.com/
-// new MyPromise
-// then 的链式调用&值穿透特性
+/* eslint-disable no-unused-vars */
+// Promise.resolve()              √
+// Promise.reject()               √
+// Promise.prototype.catch()      √
+// Promise.prototype.finally()    x
+// Promise.all()                  x
+// Promise.race()                 x
+
+// const MyPromise = require('./promise2');
 const PANDING = 'PANDING';
 const FULFILLED = 'FULFILLED';
 const REJECTED = 'REJECTED';
@@ -55,6 +61,10 @@ class MyPromise {
 
     // 调用此方法就是成功
     const resolve = value => {
+      // 如果 value 是一个promise，那我们的库中应该也要实现一个递归解析
+      if (value instanceof MyPromise) {
+        return value.then(resolve, reject); // eslint-disable-line no-use-before-define
+      }
       if (this.status === PANDING) { // 状态为 PENDING 时才可以更新状态，防止 executor 中调用了两次 resovle/reject 方法
         this.status = FULFILLED;
         this.value = value;
@@ -65,6 +75,9 @@ class MyPromise {
 
     // 调用此方法就是失败
     const reject = reason => {
+      if (reason instanceof MyPromise) {
+        return reason.then(resolve, reject); // eslint-disable-line no-use-before-define
+      }
       if (this.status === PANDING) {
         this.status = REJECTED;
         this.reason = reason;
@@ -137,37 +150,36 @@ class MyPromise {
     });
     return myPromise2;
   }
+
+  catch(errCallback) {
+    return this.then(null, errCallback);
+  }
+
+  static resolve(data) {
+    return new MyPromise((resolve, reject) => {
+      resolve(data);
+    });
+  }
+
+  static reject(reason) {
+    return new MyPromise((resolve, reject) => {
+      reject(reason);
+    });
+  }
 }
-// // test
-// const promise = new MyPromise((resolve, reject) => {
-//   setTimeout(() => {
-//     reject('失败');
-//   }, 3000);
-// });
-// promise.then().then().then(data => {
-//   console.log('data--->', data);
-// }, err => {
-//   console.log('err--->', err);
-// }).then(data => {
-//   console.log('222--->data', data); // undefined
-// }, err => {
-//   console.log('222--->err', err);
-// });
 
-// // 对比
-// const promise2 = new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     reject('失败'); // eslint-disable-line prefer-promise-reject-errors
-//   }, 3000);
-// });
-// promise2.then().then().then(data => {
-//   console.log('Promise-data--->', data);
-// }, err => {
-//   console.log('Promise-err--->', err);
-// }).then(data => {
-//   console.log('Promise-222--->data', data); // undefined
-// }, err => {
-//   console.log('Promise-222--->err', err);
-// });
+// catch
+// MyPromise.prototype.catch = function (errCallback) {
+//   return this.then(null, errCallback);
+// };
 
-module.exports = MyPromise;
+// test
+MyPromise.reject(new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    reject('err');
+  }, 3000);
+})).then(data => {
+  console.log(data, 'success');
+}).catch(err => {
+  console.log('catch', err);
+});

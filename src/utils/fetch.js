@@ -1,30 +1,30 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const fetch = (url, params, method) => {
   const config = {
     url,
-    method: method.toLocaleUpperCase() || 'GET'
-  }
+    method: method.toLocaleUpperCase() || 'GET',
+  };
   if (config.method === 'GET' || config.method === 'DELETE') {
-    config.params = params
+    config.params = params;
   } else {
-    config.data = params
+    config.data = params;
   }
   if (!config.url) {
-    return
+    return;
   }
-  config.data = config.data || {}
+  config.data = config.data || {};
   return new Promise((resolve, reject) => {
     axios(config).then(res => {
-      const data = res.data
-      resolve(data)
+      const data = res.data;
+      resolve(data);
     }).catch(err => {
-      let error = {message: '请求失败'}
+      const error = { message: '请求失败' };
       if (err.message) {
-        error.message = err.message
+        error.message = err.message;
       }
-      reject(error)
-    })
-  })
-}
-export default fetch
+      reject(error);
+    });
+  });
+};
+export default fetch;

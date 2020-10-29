@@ -7,6 +7,7 @@
 </template>
 
 <script>
+  // 横向滚动
   export default {
     name: 'overflowX',
     data() {

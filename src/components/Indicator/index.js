@@ -15,9 +15,10 @@ export default {
     Vue.nextTick(() => {
       instance.visible = true;
     });
-    // setTimeout(() => {
-    //   this.close();
-    // }, 3000);
+    const time = options.time ? options.time : 2000;
+    setTimeout(() => {
+      this.close();
+    }, time);
   },
 
   close() {

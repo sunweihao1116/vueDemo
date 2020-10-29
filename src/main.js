@@ -7,9 +7,11 @@ import router from './router';
 import './assets/css/bounceInDown.css';
 import rem from './utils/rem';
 import icons from './common/icons';
+import Indicator from './components/Indicator';
 // import myCharts from './comm/js/myCharts';
 
 // Vue.use(myCharts);
+Vue.prototype.$Indicator = Indicator;
 Vue.prototype.$icons = icons;
 rem();
 

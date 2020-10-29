@@ -34,13 +34,13 @@
       margin: 300px auto 0;
     }
     .indicator-text {
-      width: 300px;
+      width: 160px;
       font-size: 14px;
       height: 40px;
       line-height: 40px;
       text-align: center;
       margin: auto;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.2);
       border-radius: 10px;
     }
   }

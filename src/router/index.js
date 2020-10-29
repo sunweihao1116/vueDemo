@@ -19,11 +19,17 @@ const selectDom = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/s
 const Login = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/Login');
 const takePhoto = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/takePhoto');
 const faceinView = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/facein-view');
+const signaturePad = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/signature_pad');
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
+    {
+      path: '/signaturePad',
+      name: 'signaturePad',
+      component: signaturePad,
+    },
     {
       path: '/faceinView',
       name: 'faceinView',

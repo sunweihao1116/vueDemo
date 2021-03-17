@@ -18,6 +18,7 @@ module.exports = {
     AMap: true,
     gtag: true,
     require: true,
+    TencentCaptcha: true,
     // 'MarkerShape': true,
   },
   // check if imports actually resolve

@@ -36,7 +36,7 @@ export default {
   },
   mounted() {
     this.video = document.getElementById('video');
-    document.getElementById('video').appendChild(this.video);
+    // document.getElementById('video').appendChild(this.video);
     // this.initCamera();
   },
   methods: {
@@ -99,8 +99,8 @@ export default {
         canvas.height = this.video.offsetHeight;
         const context = canvas.getContext('2d');
         context.drawImage(this.video, 0, 0, this.video.offsetWidth, this.video.offsetHeight);
-        const newImg = document.createElement('img');
-        newImg.setAttribute('crossOrigin', 'anonymous');
+        // const newImg = document.createElement('img');
+        // newImg.setAttribute('crossOrigin', 'anonymous');
         this.src = canvas.toDataURL('image/jpeg');
         this.showCameraFlag = false;
         this.stopTracks();

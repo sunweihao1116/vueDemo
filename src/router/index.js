@@ -1,30 +1,38 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-const HelloWorld = () => import(/* webpackChunkName: "Navigation" */ '@/pages/HelloWorld');
+const HelloWorld = () => import(/* webpackChunkName: "HelloWorld" */ '@/pages/HelloWorld');
 const code = () => import(/* webpackChunkName: "Navigation" */ '@/pages/code');
-const verify = () => import(/* webpackChunkName: "Navigation" */ '@/pages/verify');
-const water = () => import(/* webpackChunkName: "Navigation" */ '@/pages/water');
-const piano = () => import(/* webpackChunkName: "Navigation" */ '@/pages/piano');
-const address = () => import(/* webpackChunkName: "Navigation" */ '@/pages/address');
-const echarts = () => import(/* webpackChunkName: "Navigation" */ '@/pages/echarts');
+const verify = () => import(/* webpackChunkName: "verify" */ '@/pages/verify');
+const water = () => import(/* webpackChunkName: "water" */ '@/pages/water');
+const piano = () => import(/* webpackChunkName: "piano" */ '@/pages/piano');
+const address = () => import(/* webpackChunkName: "address" */ '@/pages/address');
+const echarts = () => import(/* webpackChunkName: "echarts" */ '@/pages/echarts');
 const elTree = () => import(/* webpackChunkName: "elTree" */ '@/pages/elTree');
-const tab = () => import(/* webpackChunkName: "elTree" */ '@/pages/tab');
-const scrollLeft = () => import(/* webpackChunkName: "elTree" */ '@/pages/scrollLeft');
+const tab = () => import(/* webpackChunkName: "tab" */ '@/pages/tab');
+const scrollLeft = () => import(/* webpackChunkName: "scrollLeft" */ '@/pages/scrollLeft');
 const listHover = () => import(/* webpackChunkName: "listHover" */ '@/pages/listHover');
 const vueDraggable = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/vueDraggable');
-const datePicker = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/datePicker');
-const overFlowX = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/overflow-x');
-const selectDom = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/selectDom');
-const Login = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/Login');
-const takePhoto = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/takePhoto');
-const faceinView = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/facein-view');
-const signaturePad = () => import(/* webpackChunkName: "vueDraggable" */ '@/pages/signature_pad');
+const datePicker = () => import(/* webpackChunkName: "datePicker" */ '@/pages/datePicker');
+const overFlowX = () => import(/* webpackChunkName: "overFlowX" */ '@/pages/overflow-x');
+const selectDom = () => import(/* webpackChunkName: "selectDom" */ '@/pages/selectDom');
+const Login = () => import(/* webpackChunkName: "Login" */ '@/pages/Login');
+const takePhoto = () => import(/* webpackChunkName: "takePhoto" */ '@/pages/takePhoto');
+const faceinView = () => import(/* webpackChunkName: "faceinView" */ '@/pages/facein-view');
+const signaturePad = () => import(/* webpackChunkName: "signaturePad" */ '@/pages/signature_pad');
+const luckyDraw = () => import(/* webpackChunkName: "windowDemo" */ '@/pages/luckyDraw');
+
+const novel = () => import(/* webpackChunkName: "novel" */ '@/pages/yqkxs/yqkxs');
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
+    {
+      path: '/luckyDraw',
+      name: 'luckyDraw',
+      component: luckyDraw,
+    },
     {
       path: '/signaturePad',
       name: 'signaturePad',
@@ -118,6 +126,11 @@ export default new Router({
       path: '/takePhoto',
       name: 'takePhoto',
       component: takePhoto,
+    },
+    // novel
+    {
+      path: '/novel/:id',
+      component: novel,
     },
   ],
 });
